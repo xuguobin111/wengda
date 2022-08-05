@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap/bootstrap@5.1.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/init.css')}}">
+{% block head %}{% endblock %}
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+      <div class="container-fluid">
+    <a class="navbar-brand" href="https://www.zhihu.com/">知乎问答</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/">首页</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('qa.public_question') }}">发布问答</a>
+        </li>
+      </ul>
+           <form class="d-flex" role="search" method="get" action="{{ url_for('qa.search') }}">
+        <input class="form-control me-2" type="search" placeholder="关键字" aria-label="Search" name="q">
+        <button class="btn btn-outline-success" type="submit">搜索</button>
+      </form>
+<ul class="navbar-nav">
+       {% if user %}
+     <li class="nav-item">
+        <span class="nav-link"> {{ user.username }}</span>
+     </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('user.logout') }}">退出登录</a>
+        </li>
+    {% else %}
+            <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('user.login') }}">登录</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('user.register') }}">注册</a>
+        </li>
+    {% endif %}
+      </ul>
+
+    </div>
+  </div>
+</nav>
+<div class="container">{% block body %}{% endblock %}</div>
+</body>
+</html>

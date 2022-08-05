@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}知乎问答-注册{% endblock %}
+{% block head %}
+    <script src="{{ url_for('static',filename='jquery/jquery3.6.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/register.js') }}"></script>
+{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col"></div>
+        <div class="col">
+            <form method="post" action="{{ url_for('user.register') }}">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">邮箱</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+                    <div id="emailHelp" class="form-text">我们不会把您的邮箱用做其他用途</div>
+                </div>
+                <div class="mb-3">
+                    <div class="from-group">
+                    <label for="exampleInputEmail1">验证码</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="captcha">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button" id="captcha-btn">获取验证码</button>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">用户名</label>
+                        <input type="text" class="form-control" name="username">
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">密码</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+                </div>
+                 <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">确认密码</label>
+                    <input type="password" class="form-control" name="password_confirm">
+                </div>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary">注册</button>
+                </div>
+            </form>
+        </div>
+        <div class="col"></div>
+    </div>
+{% endblock %}

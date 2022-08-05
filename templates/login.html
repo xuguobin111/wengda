@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}知乎问答-登录{% endblock %}
+{% block head %}
+{% endblock %}
+{% block body %}
+    <div class="row">
+    <div class="col"></div>
+     <div class="col">
+          <form action="{{ url_for('user.login') }}" method="post">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">邮箱</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">密码</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+  </div>
+              {% for message in get_flashed_messages() %}
+              <div class="form-group">
+              <div class="text-danger">{{ message }}</div>
+              </div>
+              {% endfor %}
+              <div class="d-grid gap-2">
+  <button type="submit" class="btn btn-primary">登录</button>
+                  </div>
+</form>
+     </div>
+
+     <div class="col"></div>
+    </div>
+
+{% endblock %}
